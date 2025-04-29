@@ -1,17 +1,22 @@
 FROM python:3.13-slim
-# Create a safe cache directory
-ENV UV_CACHE_DIR=/tmp/.uv-cache
-RUN mkdir -p $UV_CACHE_DIR && chmod -R 777 $UV_CACHE_DIR
 
+# Add a non-root user
+RUN useradd -ms /bin/bash appuser
+
+# Create cache directory and assign ownership
+ENV UV_CACHE_DIR=/home/appuser/.uv-cache
+RUN mkdir -p $UV_CACHE_DIR && chown -R appuser:appuser $UV_CACHE_DIR
+
+# Install uv from image
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-
-# Set working directory
+# Set working directory and ensure it’s owned
 WORKDIR /app
-
-# Copy project files
 COPY . .
+RUN chown -R appuser:appuser /app
 
-# Install via uv:
+# Switch to non-root user
+USER appuser
+
+# Install dependencies (will use $UV_CACHE_DIR)
 RUN uv sync --locked
-
