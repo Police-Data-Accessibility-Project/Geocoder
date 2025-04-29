@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo 'Running Geocoder...'
                 sh 'chmod +x *'
-                sh 'env UV_CACHE_DIR=/tmp/.uv-cache uv run main.py'
+                sh 'uv run main.py'
             }
         }
     }

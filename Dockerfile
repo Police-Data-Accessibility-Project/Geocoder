@@ -1,4 +1,8 @@
 FROM python:3.13-slim
+# Create a safe cache directory
+ENV UV_CACHE_DIR=/tmp/.uv-cache
+RUN mkdir -p $UV_CACHE_DIR && chmod -R 777 $UV_CACHE_DIR
+
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 
@@ -7,10 +11,6 @@ WORKDIR /app
 
 # Copy project files
 COPY . .
-
-# Set a writable directory for UV's cache
-RUN mkdir -p /tmp/.uv-cache && chmod -R 777 /tmp/.uv-cache
-ENV UV_CACHE_DIR=/tmp/.uv-cache
 
 # Install via uv:
 RUN uv sync --locked
