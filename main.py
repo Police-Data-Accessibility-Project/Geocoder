@@ -54,7 +54,7 @@ async def update_location(
             namespace=Namespaces.LOCATIONS,
             subdomains=[str(location_id)]
         ),
-        json={
+        json_={
             "latitude": coordinates.latitude,
             "longitude": coordinates.longitude
         }
