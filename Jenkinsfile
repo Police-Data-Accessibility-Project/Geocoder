@@ -4,6 +4,7 @@ pipeline {
     agent any
 
     environment {
+        DOCKER_BUILDKIT = '1'
         IMAGE_NAME = 'pdap-geocoder'
         IMAGE_TAG = 'latest'
         FULL_IMAGE = "${IMAGE_NAME}:${IMAGE_TAG}"

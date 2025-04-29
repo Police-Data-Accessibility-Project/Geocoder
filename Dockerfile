@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.4
 FROM python:3.13-slim
 
 # Get UID from build args (default to 1000 if not provided)
@@ -24,4 +25,5 @@ RUN chown -R jenkinsuser:jenkinsuser /app
 USER jenkinsuser
 
 # Install dependencies (will use $UV_CACHE_DIR)
-RUN uv sync --locked
+RUN --mount=type=cache,target=${UV_CACHE_DIR} \
+    uv sync --locked --frozen
