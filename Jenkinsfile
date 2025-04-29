@@ -17,7 +17,6 @@ pipeline {
         stage('Run Geocoder') {
             steps {
                 echo 'Running Geocoder...'
-                sh 'chmod +x /tmp'
                 sh 'chmod +x *'
                 sh 'uv run main.py'
             }
