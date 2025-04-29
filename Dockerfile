@@ -10,7 +10,7 @@ COPY . .
 
 # Install via uv:
 COPY uv.lock .
-RUN uv pip sync
+RUN uv sync --locked
 
 # Set the entrypoint or command
 CMD ["python", "main.py"]
