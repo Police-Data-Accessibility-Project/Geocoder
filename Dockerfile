@@ -25,5 +25,5 @@ RUN chown -R jenkinsuser:jenkinsuser /app
 USER jenkinsuser
 
 # Install dependencies (will use $UV_CACHE_DIR)
-RUN --mount=type=cache,target=${UV_CACHE_DIR} \
+RUN --mount=type=cache,target=${UV_CACHE_DIR},uid=${JENKINS_UID},gid=${JENKINS_UID} \
     uv sync --locked
