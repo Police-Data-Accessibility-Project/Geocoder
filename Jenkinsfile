@@ -9,7 +9,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile'
-            args '-e DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL -e PDAP_EMAIL=$PDAP_EMAIL -e PDAP_PASSWORD=$PDAP_PASSWORD -e LOCATION_IQ_API_KEY=$LOCATION_IQ_API_KEY'
+            args '--build-arg JENKINS_UID=$(id -u) -e DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL -e PDAP_EMAIL=$PDAP_EMAIL -e PDAP_PASSWORD=$PDAP_PASSWORD -e LOCATION_IQ_API_KEY=$LOCATION_IQ_API_KEY'
         }
     }
 

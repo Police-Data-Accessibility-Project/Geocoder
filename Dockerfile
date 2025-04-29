@@ -1,5 +1,9 @@
 FROM python:3.13-slim
 
+ARG JENKINS_UID=1000
+RUN useradd -u $JENKINS_UID -ms /bin/bash jenkins
+USER jenkins
+
 # Add a non-root user
 RUN useradd -ms /bin/bash appuser
 
