@@ -9,6 +9,7 @@ from environs import Env
 from DTOs import Location, Coordinates
 from Dependencies import Dependencies
 from Geocoders.LocationIQGeocoder import LocationIQGeocoder
+from enums import LocationType
 from exceptions import GeocoderDone
 
 
@@ -29,7 +30,7 @@ async def get_locations_without_coordinates(
     results = []
     for entry in response.data['results']:
         location = Location(
-            type=entry["type"],
+            type=LocationType(entry["type"]),
             state_iso=entry["state_iso"],
             state_name=entry["state_name"],
             county_fips=entry["county_fips"],
