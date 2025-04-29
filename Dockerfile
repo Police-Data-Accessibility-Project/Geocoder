@@ -26,4 +26,4 @@ USER jenkinsuser
 
 # Install dependencies (will use $UV_CACHE_DIR)
 RUN --mount=type=cache,target=${UV_CACHE_DIR} \
-    uv sync --locked --frozen
+    uv sync --locked
