@@ -1,28 +1,48 @@
 #!/usr/bin/env groovy
 
-/*
-This script runs both the stage migration from production
-*/
-
 pipeline {
+    agent any
 
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-            args '--build-arg JENKINS_UID=$(id -u) -e DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL -e PDAP_EMAIL=$PDAP_EMAIL -e PDAP_PASSWORD=$PDAP_PASSWORD -e LOCATION_IQ_API_KEY=$LOCATION_IQ_API_KEY'
-        }
+    environment {
+        IMAGE_NAME = 'pdap-geocoder'
+        IMAGE_TAG = 'latest'
+        FULL_IMAGE = "${IMAGE_NAME}:${IMAGE_TAG}"
+        JENKINS_UID = sh(script: 'id -u', returnStdout: true).trim()
     }
 
     stages {
-        stage('Run Geocoder') {
+
+        stage('Build Docker Image') {
+            steps {
+                echo "Building image with UID=${JENKINS_UID}"
+                sh """
+                    docker build \
+                        --build-arg JENKINS_UID=${JENKINS_UID} \
+                        -t ${FULL_IMAGE} \
+                        .
+                """
+            }
+        }
+
+        stage('Run Geocoder in Docker') {
+            agent {
+                docker {
+                    image "${FULL_IMAGE}"
+                    reuseNode true
+                    args "-e DISCORD_WEBHOOK_URL=${env.DISCORD_WEBHOOK_URL} \
+                          -e PDAP_EMAIL=${env.PDAP_EMAIL} \
+                          -e PDAP_PASSWORD=${env.PDAP_PASSWORD} \
+                          -e LOCATION_IQ_API_KEY=${env.LOCATION_IQ_API_KEY}"
+                }
+            }
             steps {
                 echo 'Running Geocoder...'
-                sh 'whoami && id && ls -ld /tmp/.uv-cache'
-                sh 'chmod +x *'
+                sh 'whoami && id && ls -ld $UV_CACHE_DIR || echo "No cache dir found"'
                 sh 'uv run main.py'
             }
         }
     }
+
     post {
         failure {
             script {
