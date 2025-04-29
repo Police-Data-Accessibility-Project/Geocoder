@@ -10,7 +10,7 @@ from util import filter_none_values
 
 
 class LocationIQGeocoder(GeocoderBase):
-    time_between_requests_seconds = 0.5
+    time_between_requests_seconds = 0.7
 
     """
     https://docs.locationiq.com/reference/search
