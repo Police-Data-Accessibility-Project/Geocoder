@@ -17,6 +17,7 @@ pipeline {
         stage('Run Geocoder') {
             steps {
                 echo 'Running Geocoder...'
+                sh 'whoami && id && ls -ld /tmp/.uv-cache'
                 sh 'chmod +x *'
                 sh 'uv run main.py'
             }
