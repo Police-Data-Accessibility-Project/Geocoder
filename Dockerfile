@@ -9,6 +9,5 @@ WORKDIR /app
 COPY . .
 
 # Install via uv:
-COPY uv.lock .
 RUN uv sync --locked
 

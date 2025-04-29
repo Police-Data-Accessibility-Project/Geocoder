@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo 'Running Geocoder...'
                 sh 'chmod +x *'
-                sh 'python main.py'
+                sh 'uv run main.py'
             }
         }
     }
