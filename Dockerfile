@@ -9,6 +9,7 @@ WORKDIR /app
 COPY . .
 
 # Set a writable directory for UV's cache
+RUN mkdir -p /tmp/.uv-cache && chmod -R 777 /tmp/.uv-cache
 ENV UV_CACHE_DIR=/tmp/.uv-cache
 
 # Install via uv:
