@@ -81,7 +81,7 @@ async def get_and_update_location(
     print(f"Got coordinates "
           f"{coordinates.latitude}, {coordinates.longitude}")
 
-    print("Updating location...")
+    print("Updating location...", flush=True)
     await update_location(
         dependencies.access_manager,
         location_id=location.location_id,
