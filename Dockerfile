@@ -12,5 +12,3 @@ COPY . .
 COPY uv.lock .
 RUN uv sync --locked
 
-# Set the entrypoint or command
-CMD ["python", "main.py"]
