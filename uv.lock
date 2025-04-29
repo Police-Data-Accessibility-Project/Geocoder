@@ -215,7 +215,7 @@ requires-dist = [
     { name = "aiohttp", specifier = "==3.11.18" },
     { name = "discord-poster", specifier = "==0.1.0" },
     { name = "environs", specifier = ">=14.1.1" },
-    { name = "pdap-access-manager", specifier = "==0.1.7" },
+    { name = "pdap-access-manager", specifier = "==0.1.8" },
     { name = "pydantic", specifier = "==2.11.3" },
     { name = "requests", specifier = "==2.32.3" },
 ]
@@ -307,7 +307,7 @@ wheels = [
 
 [[package]]
 name = "pdap-access-manager"
-version = "0.1.7"
+version = "0.1.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -315,9 +315,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f4/fe/c917aea723dfd193849e98a4686e3e7c643f9274b8e9bf8d0f4ceb1e180e/pdap_access_manager-0.1.7.tar.gz", hash = "sha256:6c552a53aca890e75263b959fa8d01fdd1fef2ffdf9a9e950a9c956e6242fcef", size = 3457, upload_time = "2025-04-27T14:04:51.71Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/61/30/e20bc0de57236b4ee82ab2f48167d611cd6ebdfbd9279c2bcf0fd94bc3f9/pdap_access_manager-0.1.8.tar.gz", hash = "sha256:9e2b3478d9d99b4ef4bc74be4d899108ee452b054809228436c2768a94c2961c", size = 3422, upload_time = "2025-04-29T22:14:47.709Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d5/02/d499bfe4d0096b94e7133f431236a7c5c0e62f87482232abdfbd511c1746/pdap_access_manager-0.1.7-py3-none-any.whl", hash = "sha256:984bff3f572cdaab9bd3ffeaad0b59fce5d29b3c8ab2ed3df759157f6668da4e", size = 6006, upload_time = "2025-04-27T14:04:50.505Z" },
+    { url = "https://files.pythonhosted.org/packages/52/8e/fe6a1555af18002d8c7d1bf34e42d65b4ac858b60524ac1d1d2876d66f5c/pdap_access_manager-0.1.8-py3-none-any.whl", hash = "sha256:e13ed10face764e8b1767e3d32c8d541b14e86e22e42ef2a772250ef77cb1913", size = 4177, upload_time = "2025-04-29T22:14:46.885Z" },
 ]
 
 [[package]]
