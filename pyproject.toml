@@ -10,4 +10,5 @@ dependencies = [
     "pydantic==2.11.3",
     "pdap-access-manager==0.1.7",
     "discord-poster==0.1.0",
+    "environs>=14.1.1",
 ]
